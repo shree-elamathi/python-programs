@@ -1,0 +1,5 @@
+print("Hello")
+a=str(input("How are you?"))
+b=str(input("What is your name? "))
+c=eval(input("Enter your age: "))
+print("You are",b,"Whose is",c,"years old")

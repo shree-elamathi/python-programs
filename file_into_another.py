@@ -1,0 +1,8 @@
+source=input("Enter the source file name?\n")
+fr=open(source,"r")
+target=input("Enter the target file name?\n")
+fw=open(target,"w")
+fw.write(fr.read())
+print(source,"copied into",target)
+fr.close()
+fw.close()
