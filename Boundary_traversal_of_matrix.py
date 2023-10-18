@@ -7,37 +7,28 @@ matrix = [[12, 11, 10, 9],
 
 class Solution:
     def boundrytraversal(self, matrix, n, m):
-        a=[]
-        if n and m>=1:
-            i=0
+        a = []
+        if n and m >= 1:
             for j in range(m):
-                var=matrix[i][j]
+                var = matrix[0][j]
                 a.append(var)
-            obj.rightside(matrix,i+1,j,n,m,a)
-        return a
-    def rightside(self,matrix,i,j,n,m,a):
-        for k in range(i,n):
-            var1=matrix[k][j]
-            a.append(var1)
-        obj.bottomside(matrix,i,j-1,n,m,a)
-        return a
-    def bottomside(self,matrix,i,j,n,m,a):
-        for k in range(j,-1,-1):
-            var2=matrix[n-1][k]
-            a.append(var2)
-        obj.leftside(matrix,i-1,j,n,m,a)
-        return a
-    def leftside(self,matrix,i,j,n,m,a):
-        for k in range(j,-1,-1):
-            if k>0:
-                var3=matrix[k][i]
-                a.append(var3)
+            for i in range(1, n):
+                var1 = matrix[i][m - 1]
+                a.append(var1)
+            if n > 1:
+                for j in range(m - 2, -1, -1):
+                    var2 = matrix[n - 1][j]
+                    a.append(var2)
+            if m > 1:
+                for i in range(n - 2, 0, -1):
+                    var3 = matrix[i][0]
+                    a.append(var3)
         return a
 
 
 obj = Solution()
 ans=obj.boundrytraversal(matrix,n,m)
 for i in ans:
-    print(ans,end=' ')
+    print(i,end=' ')
 print()
 
