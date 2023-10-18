@@ -27,8 +27,23 @@ class Linkedlist:
         while(current_node):
             print(current_node.data,end=" ")
             current_node=current_node.next
+    def pairWiseSwap(self, head):
+        if head.next:
+            current_node=head
+            tail_node=head.next
+            while current_node.next.next:
+                temp=tail_node.next
+                if current_node
+        else:
+            return head
+
+
+
+
+
 
 lllist=Linkedlist()
+ob=Solution()
 i=int(input("Enter the no.of element to be inserted:"))
 for j in range(0,i):
     n=input("Enter the element to be inserted:")
