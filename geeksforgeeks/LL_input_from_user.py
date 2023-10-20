@@ -28,18 +28,22 @@ class Linkedlist:
             print(current_node.data,end=" ")
             current_node=current_node.next
     def pairWiseSwap(self, head):
+        current_node = head
+        # 1->cr
         if head.next:
-            current_node=head
-            tail_node=head.next
-            while current_node.next.next:
-                temp=tail_node.next
-                if current_node
-        else:
-            return head
-
-
-
-
+            temp_node=current_node.next
+            #2->temp
+            head=temp_node
+            head.next=current_node
+            #2->1
+            while temp_node.next.next:
+                current_node.next=temp_node.next.next
+                temp_node=temp_node.next
+                #1->2->3->4->5
+                #2->1
+                #2->1->4
+                #2->1->4->3->5
+#1->2->2->4->5->6->7->8
 
 
 lllist=Linkedlist()
