@@ -29,17 +29,22 @@ class Linkedlist:
             current_node=current_node.next
     def pairWiseSwap(self):
         p1 = self.head
-        p2=self.head.next
-        self.head=p2
-        temp=None
-        while p1.next:
-            p1.next=p2.next
-            p2.next=p1
-            if temp:
-                temp.next=p2
-            temp=p1
-            p1=p1.next
-            p2=p1.next
+        if head.next:
+            p2=self.head.next
+            self.head=p2
+            temp=None
+            while p1.next:
+                p1.next=p2.next
+                p2.next=p1
+                if temp:
+                    temp.next=p2
+                temp=p1
+                if p1.next==None or p1.next.next==None:
+                    break
+                p1=p1.next
+                p2=p1.next
+        else:
+            head=p1
 
 lllist=Linkedlist()
 i=int(input("Enter the no.of element to be inserted:"))
