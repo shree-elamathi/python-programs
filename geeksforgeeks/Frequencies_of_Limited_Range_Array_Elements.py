@@ -1,4 +1,4 @@
-class fol():
+class fol:
     def __init__(self,N,P,arr):
         self.arr = arr
         self.P=P
