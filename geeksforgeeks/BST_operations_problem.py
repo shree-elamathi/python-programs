@@ -21,13 +21,28 @@ def insert(root, key):
     return root
 
 def inorder(root,values=None)->list:
-    if values is None:
-        values=[]
-    if root:
-        inorder(root.left,values)
-        values.append(root.val)
-        inorder(root.right,values)
-    return values
+   if values is None:
+       values=[]
+   if root:
+       inorder(root.left,values)
+       values.append(root.val)
+       inorder(root.right,values)
+   return values
+#Given two BSTs containing N1 and N2 distinct nodes respectively and given a value x, your task is to complete
+# the function countPairs(), that returns the count of all pairs of (a, b), where a belongs to one BST
+# and b belongs to another BST, such that a + b = x.
+
+def countpairs(root1,root2,x):
+   arr1=inorder(root1)
+   arr2=inorder(root2)
+   pairs=[]
+   for i in arr1:
+       for j in arr2:
+           if i+j==x:
+               pairs.append(i)
+               pairs.append(j)
+   return (int(len(pairs)/2))
+
 
 def leafnodes(root: Node,leafnode=None)->list:
     if leafnode is None:
@@ -57,6 +72,23 @@ def isDeadEnd( root):
         return True
     else:
         return False
+
+#This method is more time complex
+def inorder(root):
+    if root:
+        yield from inorder_generator(root.left)
+        yield root.val
+        yield from inorder_generator(root.right)
+
+def count(root1,root2,x):
+    arr=[]
+    for i in inorder(root1):
+        for j in inorder(root2):
+            if i+j==x:
+                arr.append(i)
+                arr.append(j)
+    return (int(len(arr)/2))
+
 
 
 if __name__=='__main__':
