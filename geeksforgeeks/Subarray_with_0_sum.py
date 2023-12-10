@@ -6,25 +6,34 @@ class solution:
         for i in arr:
             if i==0:
                 return True
+        else:
+            sp = 0
+            ep = sp + 1
+            if tofindsum(arr, sp):
+                return True
             else:
-                if i<0:
-                    m=i
-                    arr.remove(i)
-                    if tofindsum(arr,m):
-                        return True
-                    else:
-                        return False
+                return False
 
-def tofindsum(arr,m):
-    for i in range(0,len(arr)):
-        if arr[i]+m==0:
+def tofindsum(arr,sp):
+    if sp<len(arr):
+        ep=sp+1
+        a=0
+        while ep<len(arr):
+            sum=0
+            for i in range(sp,ep+1):
+                sum=sum+arr[i]
+            if sum==0:
+                a=a+1
+                break
+            else:
+                ep = ep + 1
+        if a>0:
             return True
         else:
-            for j in range(i+1,len(arr)):
-                if arr[i]+arr[j]+m==0:
-                    return True
+            return tofindsum(arr,sp+1)
 
 
-arr=[5,-4,-3,-1]
-n=4
+
+arr=[6,-10,-4,-6]
+n=3
 print(solution().subarray(arr,n))
