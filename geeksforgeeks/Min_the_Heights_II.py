@@ -9,14 +9,24 @@
 class Solution:
     def getMinDiff(self, arr, n, k):
         arr.sort()
-        for i in range(0,len(arr)):
-            if i<=k:
-                arr[i]=arr[i]+k
+        val=[]
+        for i in arr:
+            if i+k<max(arr):
+                val.append(i+k)
             else:
-                arr[i]=arr[i]-k
-        return arr[len(arr)-1]-arr[0]
-arr=[1,5,8,10]
-k=2
-n=5
+                if i>k:
+                    val.append(i-k)
+                else:
+                    val.append(i+k)
+        val.sort()
+        for i in range(0,len(val)):
+           if val[i]>val[len(val)-1]:
+               val[i]=val[i]-k
+        return (max(val)-min(val))
+
+
+arr=[1,8,10,6,4,6,9,1]
+k=7
+n=8
 print(Solution().getMinDiff(arr,n,k))
 
