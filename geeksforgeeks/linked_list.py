@@ -101,25 +101,33 @@ class Linkedlist:
         while(current_node):
             print(current_node.data,end=" ")
             current_node=current_node.next
+#Given a singly linked list of length n. The link list represents a binary number, ie- it contains only 0s and 1s.
+# Find its decimal equivalent.The significance of the bits decreases with the increasing index in the linked list.
+#An empty linked list is considered to represent the decimal value 0.
+# Since the answer can be very large, answer modulo 109+7 should be printed.
+    def decimalvalue(self, head):
+        MOD = 10 ** 9 + 7
+        n = llist.getCount()-1
+        ans=0
+        while head:
+            ans=ans+(int(head.data)*(2**n))
+            head=head.next
+            n=n-1
+        return ans%MOD
+    def getCount(self):
+        temp = self.head
+        count = 0
+        while (temp):
+            count += 1
+            temp = temp.next
+        return count
+
 
 llist=Linkedlist()
 llist.insertAtBegining("1")
-llist.insertAtEnd("2")
-llist.insertAtEnd("3")
-llist.insertAtEnd('4')
-llist.insertAtEnd('5')
-llist.printLL()
-
-
-
-
-
-
-
-
-
-            
-
-
-
+llist.insertAtEnd("1")
+llist.insertAtEnd("1")
+llist.insertAtEnd("0")
+#llist.printLL()
+print(llist.decimalvalue(llist.head))
 
