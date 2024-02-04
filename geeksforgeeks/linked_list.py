@@ -121,13 +121,38 @@ class Linkedlist:
             count += 1
             temp = temp.next
         return count
+#You are given two linked lists that represent two large positive numbers. From the two numbers represented
+# by the linked lists, subtract the smaller number from the larger one. Look at the examples to get a
+# better understanding of the task.
+    def sublinkedlist(self,llist,llist1):
+        temp1=""
+        temp2=""
+        while llist:
+            temp1=temp1+llist.data
+            llist=llist.next
+        while llist1:
+            temp2=temp2+llist1.data
+            llist1=llist1.next
+        temp1=int(temp1)
+        temp2=int(temp2)
+        if temp1>temp2:
+            x=str(temp1-temp2)
+        else:
+            x=str(temp2-temp1)
+        ll3=Linkedlist()
+        for i in x:
+            ll3.insertAtEnd(i)
+        return ll3.head.data
 
 
 llist=Linkedlist()
 llist.insertAtBegining("1")
-llist.insertAtEnd("1")
-llist.insertAtEnd("1")
+llist.insertAtEnd("0")
 llist.insertAtEnd("0")
 #llist.printLL()
-print(llist.decimalvalue(llist.head))
-
+llist1=Linkedlist()
+llist1.insertAtBegining("1")
+llist1.insertAtEnd("2")
+#llist1.printLL()
+print(llist.sublinkedlist(llist.head,llist1.head))
+#print(llist.decimalvalue(llist.head))
