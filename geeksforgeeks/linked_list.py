@@ -143,16 +143,46 @@ class Linkedlist:
         for i in x:
             ll3.insertAtEnd(i)
         return ll3.head.data
+#given a sorted circular linked list and given an integer and you have to insert
+# the value such that the linked list remains sorted.
+    def sortedinsert(self,head,data):
+        new_node=Node(data)
+        #case1: No node
+        if head is None:
+            head=new_node
+            return head
+        current=head
+        #case2: Insert at begining
+        if data<head.data:
+            while current.next!=head:
+                current=current.next
+            current.next=new_node
+            new_node.next=head
+            return new_node
+        #case3:Insert in the middle
+        while current.next!=head:
+            if current.data<=data<=current.next.data:
+                new_node.next=current.next
+                current.next=new_node
+                return head
+            current=current.next
+        #case4:Insert at end
+        current.next=new_node
+        new_node.next=head
+        return head
+
+
 
 
 llist=Linkedlist()
-llist.insertAtBegining("1")
+llist.insertAtBegining("-16")
+llist.insertAtEnd("-14")
+llist.insertAtEnd("-2")
+llist.insertAtEnd("-1")
 llist.insertAtEnd("0")
-llist.insertAtEnd("0")
-#llist.printLL()
-llist1=Linkedlist()
-llist1.insertAtBegining("1")
-llist1.insertAtEnd("2")
-#llist1.printLL()
-print(llist.sublinkedlist(llist.head,llist1.head))
-#print(llist.decimalvalue(llist.head))
+llist.insertAtEnd("3")
+llist.insertAtEnd("7")
+llist.insertAtEnd("8")
+llist.insertAtEnd("13")
+llist.sortedinsert(llist.head,22)
+llist.printLL()
