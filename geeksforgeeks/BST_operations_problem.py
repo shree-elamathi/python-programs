@@ -75,8 +75,6 @@ def countpairs(root1,root2,x):
             j-=1
     return res
 
-
-
 def isDeadEnd( root):
     arr1=leafnodes(root)
     arr2=inorder(root)
