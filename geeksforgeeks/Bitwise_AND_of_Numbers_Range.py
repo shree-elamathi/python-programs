@@ -2,6 +2,10 @@
 # in this range, inclusive.
 class solution:
     def rangebitwiseand(self, left, right):
+        if left==1 and right==1:
+            return 1
+        if left<=1 and right==1:
+            return 0
         val=left
         for i in range(left+1,right+1):
                 val=val&i
