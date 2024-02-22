@@ -1,10 +1,6 @@
-arr1=[1,3,2]
-arr2=[3,4,2,1]
-x=4
-pairs=[]
-for i in arr1:
-    for j in arr2:
-        if i+j==x:
-            pairs.append(i)
-            pairs.append(j)
-print (int(len(pairs)/2))
+n=int(input("Enter the limit: "))
+for i in range(0,n+1):
+    for k in range(i+1,0,-1):
+        print("",end=" ")
+    for j in range(i,n+1):
+        print("*",end=" ")
