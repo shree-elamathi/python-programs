@@ -12,10 +12,6 @@ class solution:
                     val[j]=(val[j]+val[j-1])%MOD
         return val[m]
 
-
-
-
-
 s="banana"
 t="ban"
 print(solution().sequencecount(s,t))
