@@ -7,11 +7,22 @@
 ##    print(n3,end="\t")
 ##    n1=n2
 ##    n2=n3
-n=17
-n1=-1
-n2=1
-for i in range(n+1):
-    n3=n1+n2
-    n1=n2
-    n2=n3
-print(n3)
+n=5
+#n1=-1
+#n2=1
+#for i in range(n+1):
+#    n3=n1+n2
+#    n1=n2
+#    n2=n3
+#print(n3)
+def series(n):
+    list=[]
+    n1=-1
+    n2=1
+    for i in range(n+1):
+        n3=n1+n2
+        n1=n2
+        n2=n3
+        list.append(n3)
+    return list
+print(*series(n))
