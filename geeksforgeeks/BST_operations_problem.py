@@ -90,6 +90,20 @@ def isDeadEnd( root):
         return True
     else:
         return False
+#Given the root of a binary search tree and a number n, find the greatest number in the binary search
+# tree that is less than or equal to n.
+def findmax(root,n):
+    ans=None
+    while root:
+        if root.val>n:
+            root=root.left
+        else:
+            ans=root.val
+            root=root.right
+    if ans:
+        return ans
+    else:
+        return -1
 
 #This method is more time complex
 #def inorder(root):
@@ -128,9 +142,13 @@ def isDeadEnd( root):
 
 if __name__=='__main__':
     root = Node(8)
-    root = insert(root, 7)
-    root = insert(root, 10)
+    root = insert(root, 5)
+    root = insert(root, 12)
     root = insert(root, 2)
+    root = insert(root, 1)
+    root = insert(root, 3)
     root = insert(root, 9)
-    root = insert(root, 13)
-print(isDeadEnd(root))
+    root = insert(root, 21)
+    root = insert(root, 19)
+    root = insert(root, 25)
+print(findmax(root,n=24))
