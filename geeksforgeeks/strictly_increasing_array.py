@@ -3,25 +3,18 @@
 # than original number is counted as one operation. Note: Array elements can become negative after applying operation.
 class Solution:
     def min_operations(self, nums):
-        count=0
-        if len(nums)==1:
-            return 0
-        elif len(nums)==2:
-            if nums==sorted(nums):
-                return 0
-            return 1
-        else:
-            val=min(nums)
-            ind=nums.index(val)
-            count+=ind
-            for i in range(ind+1,len(nums)):
-                if nums[i-1]<nums[i]:
-                    continue
-                else:
-                    count+=1
-                    nums[i]=nums[i-1]+1
-        return count
+        l=Solution().Lis(nums)
+        return (len(nums)-l)
+    def Lis(self,arr):
+        dp=[]
+        for i in range (len(arr)):
+            dp.append(1)
+        for i in range(1,len(arr)):
+            for j in range(0,i):
+                if (arr[i]>arr[j]) and (arr[i]-arr[j]>=i-j):
+                    dp[i]=max(dp[i],1+dp[j])
+        return max(dp)
 
 
-nums = [1, 1, 1, 1]
+nums = [10,5,5,2,4,10,3,2,7,9]
 print(Solution().min_operations(nums))
