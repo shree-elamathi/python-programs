@@ -170,19 +170,39 @@ class Linkedlist:
         current.next=new_node
         new_node.next=head
         return head
+'''
+Given two numbers, num1 and num2, represented by linked lists of size n and m respectively. 
+The task is to return a linked list that represents the sum of these two numbers.
+For example, the number 190 will be represented by the linked list, 1->9->0->null, similarly 25 
+by 2->5->null. Sum of these two numbers is 190 + 25 = 215, which will be represented by 2->1->5->null. 
+You are required to return the head of the linked list 2->1->5->null.
+Note: There can be leading zeros in the input lists, but there should not be any leading zeros in the 
+output list.
+'''
+    def addtwolist(self,num1,num2):
+        sum=Linkedlist()
+        num_1=""
+        num_2=""
+        cnode1=num1.head
+        cnode2=num2.head
+        while cnode1:
+            num_1+=str(cnode1.data)
+            cnode1=cnode1.next
+        while cnode2:
+            num_2 += str(cnode2.data)
+            cnode2 = cnode2.next
+        val=str(int(num_1)+int(num_2))
+        for i in val:
+            sum.insertAtEnd(i)
+        return sum
 
-
-
-
-llist=Linkedlist()
-llist.insertAtBegining("-16")
-llist.insertAtEnd("-14")
-llist.insertAtEnd("-2")
-llist.insertAtEnd("-1")
-llist.insertAtEnd("0")
-llist.insertAtEnd("3")
-llist.insertAtEnd("7")
-llist.insertAtEnd("8")
-llist.insertAtEnd("13")
-llist.sortedinsert(llist.head,22)
-llist.printLL()
+num1=Linkedlist()
+arr1=[4,5]
+for i in arr1:
+    num1.insertAtEnd(i)
+num2=Linkedlist()
+arr2=[3,4,5]
+for i in arr2:
+    num2.insertAtEnd(i)
+res=Linkedlist().addtwolist(num1,num2)
+res.printLL()
