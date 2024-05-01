@@ -170,15 +170,16 @@ class Linkedlist:
         current.next=new_node
         new_node.next=head
         return head
-'''
-Given two numbers, num1 and num2, represented by linked lists of size n and m respectively. 
-The task is to return a linked list that represents the sum of these two numbers.
-For example, the number 190 will be represented by the linked list, 1->9->0->null, similarly 25 
-by 2->5->null. Sum of these two numbers is 190 + 25 = 215, which will be represented by 2->1->5->null. 
-You are required to return the head of the linked list 2->1->5->null.
-Note: There can be leading zeros in the input lists, but there should not be any leading zeros in the 
-output list.
-'''
+
+
+#Given two numbers, num1 and num2, represented by linked lists of size n and m respectively.
+#The task is to return a linked list that represents the sum of these two numbers.
+#For example, the number 190 will be represented by the linked list, 1->9->0->null, similarly 25
+#by 2->5->null. Sum of these two numbers is 190 + 25 = 215, which will be represented by 2->1->5->null.
+#You are required to return the head of the linked list 2->1->5->null.
+#Note: There can be leading zeros in the input lists, but there should not be any leading zeros in the
+#output list.
+
     def addtwolist(self,num1,num2):
         sum=Linkedlist()
         num_1=""
@@ -196,13 +197,30 @@ output list.
             sum.insertAtEnd(i)
         return sum
 
-num1=Linkedlist()
-arr1=[4,5]
+# Given a singly linked list having n nodes containing english alphabets ('a'-'z').
+# Rearrange the linked list in such a way that all the vowels come before the consonants while
+# maintaining the order of their arrival.
+    def arrangeCV(self,head1):
+        ll=Linkedlist()
+        vow=['a','e','i','o','u']
+        vow1=[]
+        cons=[]
+        while head1:
+            if head1.data not in vow:
+                cons.append(head1.data)
+            else:
+                vow1.append(head1.data)
+            head1=head1.next
+        for i in vow1:
+            ll.insertAtEnd(i)
+        for i in cons:
+            ll.insertAtEnd(i)
+        return (ll)
+
+
+ll1=Linkedlist()
+arr1=['a','b','c','d','e','f','g','h','i']
 for i in arr1:
-    num1.insertAtEnd(i)
-num2=Linkedlist()
-arr2=[3,4,5]
-for i in arr2:
-    num2.insertAtEnd(i)
-res=Linkedlist().addtwolist(num1,num2)
+    ll1.insertAtEnd(i)
+res=ll1.arrangeCV(ll1.head)
 res.printLL()
