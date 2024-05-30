@@ -42,6 +42,8 @@ def inorder(root,values=None)->list:
 #              pairs.append(i)
 #              pairs.append(j)
 #  return (int(len(pairs)/2))
+#def serialize(root):
+
 
 def leafnodes(root: Node,leafnode=None)->list:
     if leafnode is None:
@@ -141,14 +143,9 @@ def findmax(root,n):
 
 
 if __name__=='__main__':
-    root = Node(8)
-    root = insert(root, 5)
-    root = insert(root, 12)
-    root = insert(root, 2)
-    root = insert(root, 1)
-    root = insert(root, 3)
-    root = insert(root, 9)
-    root = insert(root, 21)
-    root = insert(root, 19)
-    root = insert(root, 25)
-print(findmax(root,n=24))
+    root = Node(10)
+    root = insert(root, 20)
+    root = insert(root, 30)
+    root = insert(root, 60)
+    root = insert(root, 40)
+print(inorder(root,values=None))
