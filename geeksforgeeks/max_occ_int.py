@@ -14,6 +14,21 @@ The maximum occurred integer in these ranges is 3.
 class Solution:
     def max_occ_int(self,n,l,r,maxx):
         val=[]
+        count=[]
+        for i in range(min(l),maxx+1):
+            val.append(i)
+            c=0
+            for j in range(n):
+                if i>=l[j] and i<=r[j]:
+                    c+=1
+            count.append(c)
+        ind=count.index(max(count))
+        return val[ind]
+'''
+Naive approach 1
+class Solution:
+    def max_occ_int(self,n,l,r,maxx):
+        val=[]
         al_counted_val=[]
         count=[]
         for i in range(n):
@@ -27,6 +42,25 @@ class Solution:
         ma_val=max(count)
         ind=count.index(ma_val)
         return al_counted_val[ind]
+Naive approach 2
+import sys
+class Solution:
+    #Complete this function
+    #Function to find the maximum occurred integer in all ranges.
+    def maxOccured(self,n, l, r, maxx):
+        x = [0] * (maxx + 2)
+        for i in range(n):
+            x[l[i]] += 1
+            x[r[i] + 1] -= 1
+        res = sum = 0
+        maxiboi = -sys.maxsize - 1 # INT_MIN
+        for i in range(maxx + 1):
+            sum += x[i]
+            if sum > maxiboi:
+                maxiboi = sum
+                res = i
+        return res
+'''
 
 
 
