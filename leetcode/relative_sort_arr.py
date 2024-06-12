@@ -12,6 +12,7 @@ class Solution:
             for j in range(c):
                 arr1.remove(i)
             for j in range(c):
+                print(k)
                 arr1.insert(k,i)
             k+=c
         return arr1
