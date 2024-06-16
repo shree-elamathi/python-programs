@@ -9,8 +9,6 @@ m=int(input("\nEnter the number of elements in V2: "))
 for i in range(0,m):
     elem=int(input("Enter the elements of V2: "))
     v2.append(elem)
-print(v1)
-print(v2)
 for i in v1:
     if i in v2:
         v3.append(i)
