@@ -216,11 +216,24 @@ class Linkedlist:
         for i in cons:
             ll.insertAtEnd(i)
         return (ll)
-
+def areIdentical(head1,head2):
+    while head1 or head2:
+        if not head1:
+            return False
+        if not head2:
+            return False
+        if head1.data!=head2.data:
+            return False
+        head1=head1.next
+        head2=head2.next
+    return True
 
 ll1=Linkedlist()
-arr1=['a','b','c','d','e','f','g','h','i']
+arr1=[1,2,3,4,5,6,7]
 for i in arr1:
     ll1.insertAtEnd(i)
-res=ll1.arrangeCV(ll1.head)
-res.printLL()
+ll2=Linkedlist()
+arr2=[1,2,3,4,5,6,7]
+for i in arr2:
+    ll2.insertAtEnd(i)
+print(areIdentical(ll1.head,ll2.head))
