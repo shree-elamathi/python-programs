@@ -1,28 +1,36 @@
-##n=eval(input("Enter the value of N?"))
-##n1=-1
-##n2=1
-##print("The first",n,"fibonacci series are:")
-##for i in range (n):
-##    n3=n1+n2
-##    print(n3,end="\t")
-##    n1=n2
-##    n2=n3
-n=5
-#n1=-1
-#n2=1
-#for i in range(n+1):
-#    n3=n1+n2
-#    n1=n2
-#    n2=n3
-#print(n3)
-def series(n):
-    list=[]
-    n1=-1
-    n2=1
-    for i in range(n+1):
-        n3=n1+n2
-        n1=n2
-        n2=n3
-        list.append(n3)
-    return list
-print(*series(n))
+#print n fibonacci numbers using for loop
+def fibonacci(n):
+    num1=0
+    num2=1
+    print(num1)
+    print(num2)
+    for i in range(n):
+        num3=num1+num2
+        print(num3)
+        num1=num2
+        num2=num3
+#fibonacci(4)
+
+#printing n fibonacci numbers using recursion
+#print(0)
+#print(1)
+def fibo(num1,num2,count):
+    if count<=19:
+        num3=num1+num2
+        print(num3)
+        num1=num2
+        num2=num3
+        count+=1
+        fibo(num1,num2,count)
+    else:
+        return
+#fibo(0,1,2)
+
+#printing nth fibonacci number using recursion
+def F(n):
+    if n<=1:
+        return n
+    else:
+        return F(n-1)+F(n-2)
+
+print(F(19))
