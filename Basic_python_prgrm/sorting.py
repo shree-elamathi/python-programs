@@ -1,10 +1,12 @@
-n=eval(input("How many names?" ))
-a=[]
-print("enter",n,"names one by one")
-for i in range(n):
-    a.append(input())
-print('before sort, the names are')
-print(a)
-a.sort()
-print('after sort, the names are')
+#Bubble sorting
+def bubbleSort(arr,n):
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if arr[j]>arr[j+1]:
+                arr[j],arr[j+1]=arr[j+1],arr[j]
+    return arr
+
+a=[9,5,4,7,3,8,1,6]
+n=len(a)
+bubbleSort(a,n)
 print(a)
