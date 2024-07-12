@@ -52,10 +52,19 @@ def Ancestors(root,target):
         inorder(root.right)
         if found:
             return
+        ans.pop()
     ans=[]
     found=False
     inorder(root)
     return ans
+
+def hasPathSum( root, target):
+    if not root:
+        return False
+    if root.right is None and root.left is None:
+        if target==root.data:
+            return True
+    return (hasPathSum(root.left,target-root.data) or hasPathSum(root.right,target-root.data))
 
 if __name__ == "__main__":
     root = None
@@ -64,9 +73,8 @@ if __name__ == "__main__":
     root = insert(root, 2)
     root = insert(root, 3)
     root = insert(root, 4)
-    root = insert(root, 5)
     root = insert(root, 6)
-    root = insert(root, 8)
+    root = insert(root, 5)
     root = insert(root, 7)
-target=7
-print(Ancestors(root,target))
+target=13
+print(hasPathSum(root,target))
