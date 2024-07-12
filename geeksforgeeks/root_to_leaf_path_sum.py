@@ -2,22 +2,11 @@
 
 '''
 class Solution:
-    def hasPathSum(self, root, target):
-        def inorder(root):
-            nonlocal ans, found
-            if not root:
-                return
-            if sum(ans) == target:
-                found = True
-                return
-            ans.append(root.data)
-            inorder(root.left)
-            if found:
-                return
-            inorder(root.right)
-            if found:
-                return
-        ans = []
-        found = False
-        inorder(root)
-        return True
+    def hasPathSum(root, target):
+        if not root:
+            return False
+        if root.right is None and root.left is None:
+            if target == root.data:
+                return True
+        return (Solution().hasPathSum(root.left, target - root.data) or Solution().hasPathSum(root.right, target - root.data))
+
