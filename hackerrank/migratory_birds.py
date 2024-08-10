@@ -5,7 +5,6 @@ frequently sighted type. If more than 1 type has been spotted that maximum amoun
 class Solution:
     def migratoryBirds(self,arr):
         types=set(arr)
-        print(types)
         c=0
         for i in types:
             x=arr.count(i)
