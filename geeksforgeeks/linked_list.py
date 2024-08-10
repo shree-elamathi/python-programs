@@ -216,6 +216,33 @@ class Linkedlist:
         for i in cons:
             ll.insertAtEnd(i)
         return (ll)
+
+#Given the head of a singly linked list, the task is to rotate the linked list clockwise by k nodes, i.e., left-shift
+#the linked list by k nodes, where k is a given positive integer smaller than or equal to length of the linked list.
+
+    def rotate(self, head, k):
+        #if this is not head or k value is 0
+        if not head or k == 0:
+            return head
+        current = head
+        length = 1
+        #loop to count length of ll
+        while current.next:
+            current = current.next
+            length += 1
+        #making the linked list circular
+        current.next = head
+        new_tail = head
+        #finding new tail
+        for _ in range(k - 1):
+            new_tail = new_tail.next
+        #the new head will be next to the new tail
+        new_head = new_tail.next
+        #breaking the circular ll
+        new_tail.next = None
+        #return the head
+        return new_head
+
 def areIdentical(head1,head2):
     while head1 or head2:
         if not head1:
@@ -227,6 +254,7 @@ def areIdentical(head1,head2):
         head1=head1.next
         head2=head2.next
     return True
+
 
 ll1=Linkedlist()
 arr1=[1,2,3,4,5,6,7]
