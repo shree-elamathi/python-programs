@@ -1,7 +1,7 @@
-x=12
-y=12
-s1 = "ACABBBBDBAAB"
-s2 = "BBCCBEECDCDE"
+x=6
+y=6
+s1 = "ABCDGH"
+s2 = "ACDGHR"
 class Solution:
     def lcs(self,x,y,s1,s2):
         if x==0 or y==0:
