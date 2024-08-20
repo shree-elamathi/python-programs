@@ -140,7 +140,74 @@ def findmax(root,n):
 #       ans = [0]
 #       self.dfs2(root2, s, x, ans)
 #       return ans[0]
+'''
+Given a binary tree and a node data called target. Find the minimum time required to burn the complete binary tree 
+if the target is set on fire. It is known that in 1 second all nodes connected to a given node get burned. That is 
+its left child, right child, and parent.
+Note: The tree contains unique values.
+'''
+from collections import deque
 
+
+class Solution:
+    def mark_parents(self, root, parent_map):
+        queue = deque([root])
+        while queue:
+            node = queue.popleft()
+            if node.left:
+                parent_map[node.left] = node
+                queue.append(node.left)
+            if node.right:
+                parent_map[node.right] = node
+                queue.append(node.right)
+
+    def find_target(self, root, target):
+        if not root:
+            return None
+        if root.data == target:
+            return root
+        left = self.find_target(root.left, target)
+        if left:
+            return left
+        return self.find_target(root.right, target)
+
+    def minTime(self, root, target):
+        if not root:
+            return 0
+
+        # Step 1: Mark the parent pointers for all nodes
+        parent_map = {}
+        self.mark_parents(root, parent_map)
+
+        # Step 2: Find the target node
+        target_node = self.find_target(root, target)
+
+        # Step 3: Perform BFS from the target node to calculate the time
+        visited = set()
+        queue = deque([(target_node, 0)])  # (node, time)
+        visited.add(target_node)
+        max_time = 0
+
+        while queue:
+            node, time = queue.popleft()
+            max_time = max(max_time, time)
+
+            # Check the left child
+            if node.left and node.left not in visited:
+                queue.append((node.left, time + 1))
+                visited.add(node.left)
+
+            # Check the right child
+            if node.right and node.right not in visited:
+                queue.append((node.right, time + 1))
+                visited.add(node.right)
+
+            # Check the parent
+            if node in parent_map and parent_map[node] not in visited:
+                queue.append((parent_map[node], time + 1))
+                visited.add(parent_map[node])
+
+        return max_time
 
 if __name__=='__main__':
     root = Node(10)
