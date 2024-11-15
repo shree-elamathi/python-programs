@@ -4,11 +4,14 @@ element doesn't exist then return -1.
 '''
 class Solution:
     def print2largest(self,arr, n):
+        for i in range(len(arr)):
+            arr[i] = int(arr[i])
+        arr = list(set(arr))
         arr.sort()
-        mx=max(arr)
-        for i in range(n-1,-1,-1):
-            if arr[i]<mx:
-                return arr[i]
+        if len(arr) >= 2:
+            return arr[-2]
+        else:
+            return "-1"
 arr=[10,5,10]
 n=len(arr)
 print(Solution().print2largest(arr,n))
