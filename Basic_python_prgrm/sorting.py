@@ -17,5 +17,5 @@ def selectionSort(arr,n):
 
 a=[9,5,4,7,3,8,1,6]
 n=len(a)
-selectionSort(a,n)
+bubbleSort(a,n)
 print(a)
