@@ -7,25 +7,18 @@ overlapping Intervals.
 class Solution:
     def mergeOverlap(self, arr):
         arr.sort()
-        res = []
-        i = 0
-        j = 1
-        n = len(arr)
+        resIndx = 0
+        res=[]
         print(arr)
-        while i < n - 1 and j < n:
-            newInterval = [0, 0]
-            if arr[i][1] < arr[j][0]:
-                res.append(arr[i])
-                i += 1
-                j += 1
-                print(res)
+        for i in range(len(arr)):
+            if arr[resIndx][1] >= arr[i][0]:
+                arr[resIndx][1] = max(arr[resIndx][1], arr[i][1])
             else:
-                newInterval[0] = arr[i][0]
-                newInterval[1] = max(arr[i][1], arr[j][1])
-                if newInterval not in res:
-                    res.append(newInterval)
-                j += 1
-                arr[i] = newInterval
+                resIndx += 1
+                arr[resIndx] = arr[i]
+        print(arr)
+        for i in range(resIndx+1):
+            res.append([arr[i][0],arr[i][1]])
         return res
 
 
