@@ -258,6 +258,27 @@ class Linkedlist:
         # return the head
         return new_head
 
+    def reverseLL(self, head):
+        curr = head
+        prev = None
+        while curr is not None:
+            nextNode = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextNode
+        return prev
+
+    def detectLoop(self,head):
+        slow = head
+        fast = head
+        while slow and fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                return True
+        return False
+
 
 def areIdentical(head1, head2):
     while head1 or head2:
@@ -303,7 +324,10 @@ class Solution:
 
 
 ll1 = Linkedlist()
-arr1 = [3,0,2,6,8,1,7,9,4,2,5,5,0]
+arr1 = [1,2,3,4]
 for i in arr1:
     ll1.insertAtEnd(i)
+head = ll1.head
+cur_head = ll1.reverseLL(head)
+
 
