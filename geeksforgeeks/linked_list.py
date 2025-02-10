@@ -279,6 +279,54 @@ class Linkedlist:
                 return True
         return False
 
+    def removeNthNode(self,head,N):
+        cur = head
+        cur1 = head
+        count = 0
+        while cur:
+            count += 1
+            cur = cur.next
+        count = (count) - N
+        while cur1:
+            if count == 1:
+                prev = cur1
+            if count == 0:
+                prev.next = cur1.next
+            count -= 1
+            cur1 = cur1.next
+        return count
+
+    def getMiddle(self, head):
+        # using slow and fast pointer approach
+        slw_pt = head
+        fast_pt = head
+        while fast_pt is not None and fast_pt.next is not None:
+            fast_pt = fast_pt.next.next
+            slw_pt = slw_pt.next
+        return slw_pt.data
+
+    def deleteLastOccurrence(self,head, key):
+        last = None
+        lastPrev = None
+        curr = head
+        prev = None
+
+        while curr:
+            if curr.data == key:
+                lastPrev = prev
+                last = curr
+            prev = curr
+            curr = curr.next
+
+        if last is not None:
+            if lastPrev is not None:
+                lastPrev.next = last.next
+            else:
+                head = head.next
+        return head
+
+
+
 
 def areIdentical(head1, head2):
     while head1 or head2:
@@ -324,10 +372,13 @@ class Solution:
 
 
 ll1 = Linkedlist()
-arr1 = [1,2,3,4]
+arr1 = [1,2,3,4,5,6,1,1,7]
 for i in arr1:
     ll1.insertAtEnd(i)
 head = ll1.head
-cur_head = ll1.reverseLL(head)
-
+# N = 3
+# print(ll1.removeNthNode(head,N))
+key = 1
+ll1.deleteLastOccurrence(head,key)
+ll1.printLL()
 
