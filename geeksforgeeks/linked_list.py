@@ -268,7 +268,31 @@ class Linkedlist:
             curr = nextNode
         return prev
 
-    def detectLoop(self,head):
+    def addOneUtil(self, head):
+        res = head
+        last = None
+        cur = head
+        carry = 1
+
+        while cur:
+            sum = carry + cur.data
+            carry = 1 if sum >= 10 else 0
+            cur.data = sum % 10
+            last = cur
+            cur = cur.next
+
+        if carry > 0:
+            last.next = Node(carry)
+
+        return res
+
+    def addOne(self,head):
+        head = self.reverseLL(head)
+        head = self.addOneUtil(head)
+        return self.reverseLL(head)
+
+
+    def detectLoop(self, head):
         slow = head
         fast = head
         while slow and fast and fast.next:
@@ -279,7 +303,7 @@ class Linkedlist:
                 return True
         return False
 
-    def removeNthNode(self,head,N):
+    def removeNthNode(self, head, N):
         cur = head
         cur1 = head
         count = 0
@@ -305,7 +329,7 @@ class Linkedlist:
             slw_pt = slw_pt.next
         return slw_pt.data
 
-    def deleteLastOccurrence(self,head, key):
+    def deleteLastOccurrence(self, head, key):
         last = None
         lastPrev = None
         curr = head
@@ -325,7 +349,24 @@ class Linkedlist:
                 head = head.next
         return head
 
+    def sortedMerge(self , head1,head2):
+        dummy = Node(-1)
+        cur = dummy
 
+        while head1 is not None and head2 is not None:
+            if head1.data <= head2.data:
+                cur.next = head1
+                head1 = head1.next
+            else:
+                cur.next = head2
+                head2 = head2.next
+            cur = cur.next
+
+        if head1 is not None:
+            cur.next = head1
+        else:
+            cur.next = head2
+        return dummy.next
 
 
 def areIdentical(head1, head2):
@@ -372,13 +413,13 @@ class Solution:
 
 
 ll1 = Linkedlist()
-arr1 = [1,2,3,4,5,6,1,1,7]
+arr1 = [1, 2, 9]
 for i in arr1:
     ll1.insertAtEnd(i)
 head = ll1.head
 # N = 3
 # print(ll1.removeNthNode(head,N))
-key = 1
-ll1.deleteLastOccurrence(head,key)
+# key = 1
+# ll1.deleteLastOccurrence(head, key)
+ll1.addOne(head)
 ll1.printLL()
-
