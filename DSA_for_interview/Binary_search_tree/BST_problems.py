@@ -139,6 +139,28 @@ class BST:
 
         return flippedroot
 
+    #function to find kth smallest element in BST
+
+    def kthSmallest(self, root, k):
+        stack = []
+        current = root
+
+        while True:
+            while current:
+                stack.append(current)
+                current = current.left  # Move left (smaller values)
+
+            if not stack:
+                return -1  # Edge case: k is out of bounds
+
+            current = stack.pop()
+            k -= 1  # Decrease k, since we found the next smallest element
+
+            if k == 0:
+                return current.data  # Found the k-th smallest element
+
+            current = current.right
+
     # function to check if two trees have same structure
     def isSameStructure(self, root1, root2):
         if root1 == None and root2 == None:
@@ -147,13 +169,6 @@ class BST:
             return (self.isSameStructure(root1.left, root2.left) and self.isSameStructure(root1.right, root2.right))
         return False
 
-    #function to check if a tree is a subtree of another tree
-    def preorder1(self, root, arr):
-        if root:
-            arr.append(root.val)
-            self.preorder1(root.left, arr)
-            self.preorder1(root.right, arr)
-        return arr
 
     def isSubTree(self, T, S):
         if S is None:
