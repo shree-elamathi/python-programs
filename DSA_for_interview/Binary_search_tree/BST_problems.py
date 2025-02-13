@@ -216,7 +216,7 @@ class BST:
     # Given a Binary Search Tree(BST) and a target. Check whether there's a pair of Nodes in the BST with value
     # summing up to the target.
 
-    def inorder(self, root, arr):
+    def inorder1(self, root, arr):
         if root:
             self.inorder(root.left, arr)
             arr.append(root.data)
@@ -224,7 +224,7 @@ class BST:
 
     def findTarget(self, root, target):
         arr = []
-        self.inorder(root, arr)
+        self.inorder1(root, arr)
         q = set()
         for i in arr:
             if (target - i) in q:
