@@ -139,7 +139,7 @@ class BST:
 
         return flippedroot
 
-    #function to find kth smallest element in BST
+    # function to find kth smallest element in BST
 
     def kthSmallest(self, root, k):
         stack = []
@@ -169,7 +169,6 @@ class BST:
             return (self.isSameStructure(root1.left, root2.left) and self.isSameStructure(root1.right, root2.right))
         return False
 
-
     def isSubTree(self, T, S):
         if S is None:
             return True
@@ -192,8 +191,8 @@ class BST:
             return True
         return False
 
-    #function to build a binary tree from inorder and preorder traversal
-    def buildTreeRecur(self,mp,preorder,preIndex,l,r):
+    # function to build a binary tree from inorder and preorder traversal
+    def buildTreeRecur(self, mp, preorder, preIndex, l, r):
         if l > r:
             return None
 
@@ -204,15 +203,36 @@ class BST:
 
         index = mp[rootval]
 
-        root.left = self.buildTreeRecur(mp , preorder,preIndex,l,index -1)
-        root.right = self.buildTreeRecur(mp, preorder, preIndex, index +1, r)
+        root.left = self.buildTreeRecur(mp, preorder, preIndex, l, index - 1)
+        root.right = self.buildTreeRecur(mp, preorder, preIndex, index + 1, r)
 
         return root
 
     def buildTree(self, inorder, preorder):
-        mp = { value : idx for idx , value in enumerate(inorder)}
+        mp = {value: idx for idx, value in enumerate(inorder)}
         preIndex = [0]
-        return self.buildTreeRecur(mp , preorder,preIndex,0,len(inorder)-1)
+        return self.buildTreeRecur(mp, preorder, preIndex, 0, len(inorder) - 1)
+
+    # Given a Binary Search Tree(BST) and a target. Check whether there's a pair of Nodes in the BST with value
+    # summing up to the target.
+
+    def inorder(self, root, arr):
+        if root:
+            self.inorder(root.left, arr)
+            arr.append(root.data)
+            self.inorder(root.right, arr)
+
+    def findTarget(self, root, target):
+        arr = []
+        self.inorder(root, arr)
+        q = set()
+        for i in arr:
+            if (target - i) in q:
+                return True
+            else:
+                q.add(i)
+
+        return False
 
 
 arr1 = [10, 5, 3, 7, 15, 13, 17]
