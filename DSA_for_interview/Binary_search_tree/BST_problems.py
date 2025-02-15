@@ -234,6 +234,19 @@ class BST:
 
         return False
 
+    def LCA(self,root, n1,n2):
+        if not root:
+            return
+
+        curr = root.val
+
+        if n1 > curr and n2 > curr:
+            return self.LCA(root.right, n1, n2)
+        elif n1 < curr and n2 < curr:
+            return self.LCA(root.left, n1, n2)
+        else:
+            return root.val
+
 
 arr1 = [10, 5, 3, 7, 15, 13, 17]
 # arr2 = [10, 5, 3, 7, 15, 13, 17]
@@ -245,4 +258,5 @@ root1 = BST().buildBST(arr1)
 # print()
 # BST().postorder(root)
 # print(BST().isSameStructure(root1,root2))
-print(BST().MaxPathSum(root1))
+#print(BST().MaxPathSum(root1))
+print(BST().LCA(root1,5,13))
