@@ -4,40 +4,23 @@
 # Note: From the dictionary dictionary each word can be taken any number of times and in any order.
 class solution:
     def wordbreak(self,s,n,dictionary):
-        val=[]
-        ans=""
-        for i in range(0,len(s)):
-            for j in range(i,len(s)):
-                if s[i:j+1] in dictionary:
-                    val.append(s[i:j+1])
-        temp=""
-        ans=0
-        for i in val:
-            temp+=i
-        if len(temp)<len(s):
-            return 0
-        if temp==s:
-            return 1
-        i=0
-        j=0
-        ans=""
-        while i<len(s) and j<len(temp):
-            if s[i]==temp[j]:
-                ans+=temp[j]
-                i+=1
-                j+=1
-            else:
-                j+=1
-        if ans==s:
-            return 1
-        return 0
+        word_set = set(dictionary)
+        x = len(s)
+        dp = [0] * (x + 1)
+        dp[0] = 1
+        for i in range(1, x + 1):
+            for j in range(i):
+                if dp[j] == 1 and s[j:i] in word_set:
+                    dp[i] = 1
+                    break
+        return dp[x]
 
 
 
 
 
-s="uvunewizkpoermegzkpoermegjvuiuvuijvunewizkpoermegsxygjsgsmivvshjsbhdptnewiisgsmigubitn"
-n=9
-dictionary=["newi","bhdpt","i","zkpoermeg","vvshjs","jvu","uvu","sgsmi","sxygj"]
+s="ilikesamsung"
+n=6
+dictionary={ "i", "like", "sam", "sung", "samsung", "mobile"}
 
 print(solution().wordbreak(s,n,dictionary))
