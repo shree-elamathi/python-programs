@@ -8,25 +8,28 @@ Both strings only contain lowercase letters.
 
 class Solution:
     def checkInclusion(self, s1, s2):
-        if len(s2) < len(s1):
-            return False
-        hashchar = {}
+        val1 = 0
         for i in s1:
-            if i in hashchar:
-                hashchar[i] += 1
+            val1 += ord(i)
+
+        n = len(s1)
+        val2 = 0
+
+        l, r = 0,0
+        while r <= len(s2) - n:
+            if r == l + n and val2 == val1:
+                return True
+
+            elif r >= l+n:
+                val2 = 0
+                l += 1
+                r = l
+
             else:
-                hashchar[i] = 1
+                val2 += ord(s2[r])
+                r += 1
 
-        for i in s2:
-            if i in hashchar:
-                hashchar[i] -= 1
-
-        for i in hashchar:
-            if hashchar[i] != 0:
-                return False
-
-        return True
-
+        return False
 
 s1 = "abc"
 s2 = "lecabee"
