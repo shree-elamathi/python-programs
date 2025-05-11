@@ -24,14 +24,27 @@ class Solution:
 
         l,r = 0,0
 
+        #loop through s
         while r < n:
             if s[r] in hash:
+
+                # if the letter is already in hash map then increase count to denote
+                # we have found value in str t
+                # and decrement the hash value by 1
                 if hash[s[r]] > 0:
                     count += 1
                 hash[s[r]] -= 1
+
+            #if it is not in hash the add it
             else:
                 hash.update([(s[r], -1)])
 
+            #If count is equal to len(t) then we have found the substring
+            # Now we try to minimize the length of substring by moving l pointer towards right
+            # and update hash values, if count becomes less than len(t)
+            # then we stop minimizing and expand r
+            # meanwhile we store the starting index as l inorder to return the string
+            # if min length is asked no need to maintain starting index instead just update the min length value
             while (count == m):
                 if (r-l+1 < min_length):
                     min_length = r-l+1
@@ -43,8 +56,12 @@ class Solution:
 
             r += 1
 
+        # If starting index is not even updated then there is no such string
+        # so return an empty string
         if stindex == -1:
             return ""
+
+        #If not return the string
         return s[stindex: stindex + min_length]
 
 s = "a"
