@@ -21,4 +21,3 @@
 ##ob=Solution()
 ##print(ob.binarysearch(arr,n,k))
 n=4
-arr=

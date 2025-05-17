@@ -304,21 +304,30 @@ class Linkedlist:
         return False
 
     def removeNthNode(self, head, N):
-        cur = head
-        cur1 = head
         count = 0
+        cur = head
+
+        # To calculate the length of the list
         while cur:
             count += 1
             cur = cur.next
-        count = (count) - N
-        while cur1:
-            if count == 1:
-                prev = cur1
-            if count == 0:
-                prev.next = cur1.next
-            count -= 1
-            cur1 = cur1.next
-        return count
+
+        cur = head
+        count = count - n
+
+        # If the count is 0 then we need to remove head so return head.next
+        if count == 0:
+            return head.next
+
+        # If not then move until the n-1 node from the last
+        for _ in range(count - 1):
+            cur = cur.next
+
+        # Now remove the nth node and return the head
+        cur.next = cur.next.next
+
+        return head
+
 
     def getMiddle(self, head):
         # using slow and fast pointer approach
@@ -412,8 +421,60 @@ class Solution:
         return mat
 
 
+'''
+You are given the head of a singly linked-list.
+The positions of a linked list of length = 7 for example, can intially be represented as:
+[0, 1, 2, 3, 4, 5, 6]
+Reorder the nodes of the linked list to be in the following order:
+[0, 6, 1, 5, 2, 4, 3]
+Notice that in the general case for a list of length = n the nodes are reordered to be in the following order:
+[0, n-1, 1, n-2, 2, n-3, ...]
+You may not modify the values in the list's nodes, but instead you must reorder the nodes themselves.
+'''
+
+def reorderList( head):
+    #point the curr pointer at the head
+    curr = head
+
+    #traverse until the node is not None
+    while curr:
+
+        #a pointer to track the last(n-1) node
+        last = head
+        while last.next:
+            #prev pointer to make the last previous node's next as None
+            prev = last
+            last = last.next
+
+        #if last and curr pointer both points to the same node then the list is reordered
+        if last == curr:
+            break
+
+        #Save the last node
+        newNode = last
+
+        #Make the last previous node's next as none to avoid cycle
+        prev.next = None
+
+        #To save the curr node's next
+        prev1 = curr.next
+
+        #Now join the prev1 to the last node
+        newNode.next = prev1
+
+        #Now attach the newNode to the curr node
+        curr.next = newNode
+
+        #now move the curr pointer to the prev1
+        curr = prev1
+
+    return head
+
+
+
+
 ll1 = Linkedlist()
-arr1 = [1, 2, 9]
+arr1 = [1, 2]
 for i in arr1:
     ll1.insertAtEnd(i)
 head = ll1.head
@@ -421,5 +482,8 @@ head = ll1.head
 # print(ll1.removeNthNode(head,N))
 # key = 1
 # ll1.deleteLastOccurrence(head, key)
-ll1.addOne(head)
+# ll1.addOne(head)
+# ll1.printLL()
+#new = reorderList(head)
+ll1.removeNthNode(head,len(arr1))
 ll1.printLL()
