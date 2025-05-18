@@ -7,7 +7,7 @@ to the farthest leaf node.
 
 
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root) :
         if root:
             l = self.maxDepth(root.left)
             r = self.maxDepth(root.right)
